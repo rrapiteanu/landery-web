@@ -211,7 +211,7 @@ function PropertyUploader({ amenities }) {
             value={amenityName}
             onChange={handleChange}
             input={<Input />}
-            renderValue={(selected) => (
+            renderValue={(selected: any) => (
               <div className={classes.chips}>
                 {selected.map((value) => (
                   <Chip key={value} label={value} className={classes.chip} />

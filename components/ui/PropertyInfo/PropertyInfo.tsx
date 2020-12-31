@@ -64,7 +64,7 @@ const ServicesContainer = styled.div`
 
 // const isAuth = useIsAuthenticated();
 
-class PropertyInfo extends React.Component {
+class PropertyInfo extends React.Component<any, any> {
   state = {
     info: this.props.property,
   };
@@ -94,7 +94,7 @@ class PropertyInfo extends React.Component {
     const amenities = this.state.info.amenitiespairs
       ? this.state.info.amenitiespairs.map((x, i) => (
           <div key={i} style={{ margin: "10px 0px", width: "50%" }}>
-            <ImageListItem img={"https://" + x.src} text={x.name} />
+            <ImageListItem text={x.name} />
           </div>
         ))
       : "";

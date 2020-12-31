@@ -16,7 +16,7 @@ function Item({ item }) {
   );
 }
 
-class PropertyImageSlider extends React.Component {
+class PropertyImageSlider extends React.Component<any, any> {
   toggleFavorites = () => {
     if (this.props.favorite === false) {
       this.props.addToFavorites();

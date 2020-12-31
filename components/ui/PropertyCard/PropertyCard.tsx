@@ -51,7 +51,7 @@ const PropertyCard = (props) => {
           className="slide"
           src={src}
           key={"slide_" + i}
-          onError={(e) => {
+          onError={(e: any) => {
             e.target.src = "/placeholder.png";
           }}
           style={slidesStyles[i]}
