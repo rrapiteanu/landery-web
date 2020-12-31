@@ -1,6 +1,7 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider as MaterialUIThemeProvider } from "@material-ui/core/styles";
 import { StylesProvider } from "@material-ui/styles";
+import ApiService from "lib/api/ApiService";
 import { AuthProvider } from "lib/providers/Auth";
 import theme from "lib/theme";
 import Router from "next/router";
@@ -43,6 +44,7 @@ MyApp.getInitialProps = async ({ Component, router, ctx }) => {
   const { token } = parseCookies(ctx);
   let pageProps = {};
   let authenticated = false;
+  await ApiService.initHeaders(token);
 
   if (token) {
     authenticated = true;
