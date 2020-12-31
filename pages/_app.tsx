@@ -10,6 +10,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import React, { useEffect } from "react";
 import { ThemeProvider as StyledComponentsThemeProvider } from "styled-components";
+import "../styles.scss";
 
 NProgress.configure({ showSpinner: false });
 

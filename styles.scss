@@ -1,0 +1,104 @@
+.property-card {
+  color: black;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  .slide {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    border-radius: 5px;
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  .placeholder {
+    width: 100%;
+    opacity: 0;
+    z-index: -1;
+  }
+  .controlls {
+    position: relative;
+    .share {
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+      }
+      cursor: pointer;
+      z-index: 1;
+      position: absolute;
+      width: 20px;
+      right: 40px;
+      top: 10px;
+    }
+    .heart {
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+      }
+      cursor: pointer;
+      z-index: 1;
+      position: absolute;
+      font-size: 25px;
+      color: white;
+      right: 10px;
+      top: 10px;
+    }
+    .prev-slide {
+      cursor: pointer;
+      z-index: 1;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      color: white;
+      font-size: 40px;
+    }
+    .next-slide {
+      cursor: pointer;
+      z-index: 1;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+      color: white;
+      font-size: 40px;
+    }
+    .dots {
+      position: absolute;
+      z-index: 1;
+      bottom: 20px;
+      left: 50%;
+      height: 12px;
+      align-items: center;
+      display: flex;
+      transform: translate(-50%, 0);
+      .dot {
+        border-radius: 50%;
+        background-color: white;
+        margin: 0 5px;
+        height: 7px;
+        width: 7px;
+        z-index: 1; // display: inline-block;
+      }
+    }
+  }
+  .fields {
+    .companyName {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .no-bedroom {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
