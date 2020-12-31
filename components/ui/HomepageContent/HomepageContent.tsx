@@ -36,30 +36,12 @@ const Container = styled.div`
       @media only screen and (max-width: 1400px) {
         max-width: 350px;
       }
-      .circle {
-        background: -webkit-linear-gradient(right, #33ddf0 0%, #17b9dc 100%);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        position: relative;
-        top: 10px;
-        left: -60px;
-        font-size: 43px;
-        color: $primaryBlue;
-        @media only screen and (max-width: 400px) {
-          left: -40px;
-        }
-      }
       h2 {
         position: relative;
         display: inline;
         font-weight: 500;
       }
     }
-  }
-  .ipads {
-    left: 0;
-    width: 100%;
-    height: auto;
   }
 `;
 
