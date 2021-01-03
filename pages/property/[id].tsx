@@ -26,8 +26,26 @@ PropertyPage.getInitialProps = async (ctx) => {
 
   try {
     const resp = await PROPERTIES_API.getProperty(id);
+
+    // [
+    //   { startDate: moment(), endDate: moment().add(5, "weeks") },
+    //   {
+    //     startDate: moment().add(8, "weeks"),
+    //     endDate: moment().add(9, "weeks"),
+    //   },
+    // ]
+
     return {
-      property: resp.data,
+      property: {
+        ...resp.data,
+        amenities: [
+          { name: "Kitchen" },
+          { name: "Gym" },
+          { name: "Wifi" },
+          { name: "Pool" },
+          { name: "Washer" },
+        ],
+      },
     };
   } catch (error) {
     Redirect(ctx, "/properties");
@@ -36,12 +54,10 @@ PropertyPage.getInitialProps = async (ctx) => {
   // {
   //   "description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lo",
   //   "lat":44.44028,
-  //   "display":"Nimman Luxury Suite Rooftop 3 mins to One Nimman",
+  //   "name":"Nimman Luxury Suite Rooftop 3 mins to One Nimman",
   //   "pets":true,
   //   "bathrooms":2,
   //   "size":4,
-  //   "companyimage":"https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80",
-  //   "company":"eu srl",
   //   "images":[
   //     "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80",
   //     "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80",

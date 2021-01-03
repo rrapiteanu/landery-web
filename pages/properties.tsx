@@ -124,8 +124,14 @@ PropertiesPage.getInitialProps = async (ctx) => {
   try {
     const resp = await PROPERTIES_API.getProperties();
 
+    console.log(resp);
+
     return {
-      data: resp.data,
+      data: resp.data.map((property) => {
+        return {
+          ...property,
+        };
+      }),
     };
 
     // return {
@@ -144,7 +150,7 @@ PropertiesPage.getInitialProps = async (ctx) => {
     //         lng: 23,
     //       },
     //       noBedroom: 1,
-    //       imgList: [
+    //       images: [
     //         "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80",
     //         "https://a0.muscache.com/im/pictures/a139a0fd-efbe-4b16-a5bb-18ec5671fe56.jpg?im_w=1200",
     //       ],
