@@ -57,10 +57,9 @@ const LoginPage = ({ classes }) => {
     const { email, password } = data;
 
     try {
-      const resp = await AUTH_API.login(email, password);
-
+      const resp: any = await AUTH_API.login(email, password);
       return {
-        accessToken: "avion",
+        accessToken: resp.data.accessToken,
       };
     } catch (error) {
       throw error;
