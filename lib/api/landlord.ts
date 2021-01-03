@@ -1,7 +1,7 @@
 import API_ROUTES from "./apiRoutes";
 import ApiService from "./ApiService";
 
-const getListings = async () => {
+const getListings = async (): Promise<any> => {
     return ApiService.get(API_ROUTES.LANLORD.listings);
 };
 

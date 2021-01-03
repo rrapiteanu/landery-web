@@ -18,14 +18,11 @@ const getProperty = async (property_id): Promise<any> => {
 };
 
 const favoriteProperty = async (property_id): Promise<any> => {
-    return true
-
-    // return ApiService.get(API_ROUTES.PROPERTIES.favoriteProperty(property_id));
+    return ApiService.post(API_ROUTES.PROPERTIES.favoriteProperty(property_id));
 };
 
 const unfavoriteProperty = async (property_id): Promise<any> => {
-    return true
-    // return ApiService.get(API_ROUTES.PROPERTIES.unfavoriteProperty(property_id));
+    return ApiService.post(API_ROUTES.PROPERTIES.unfavoriteProperty(property_id));
 };
 
 const PROPERTIES_API = {

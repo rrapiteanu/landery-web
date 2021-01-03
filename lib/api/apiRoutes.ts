@@ -1,7 +1,7 @@
 const API_ROUTES = {
     AUTH: {
-        register: "/register",
-        login: "/login",
+        register: "/Account/register",
+        login: "/Account/login",
     },
     PROPERTIES: {
         properties: "/properties",
@@ -18,7 +18,7 @@ const API_ROUTES = {
         },
     },
     LANLORD: {
-        uploadProperty: "/landlord/new",
+        uploadProperty: "/landlord/create-listing",
         listings: "/landlord/listings",
         listing: property_id => {
             return `/landlord/listings/${property_id}`;
@@ -28,6 +28,9 @@ const API_ROUTES = {
         bookings: "/bookings",
         bookProperty: property_id => {
             return `/properties/${property_id}/book`;
+        },
+        bookingsForProperty: property_id => {
+            return `/properties/${property_id}/bookings`;
         },
     }
 };

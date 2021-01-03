@@ -27,6 +27,15 @@ const MyApp = ({ Component, pageProps, authenticated }: any): JSX.Element => {
     }
   }, []);
 
+  useEffect(() => {
+    init();
+  }, []);
+
+  const init = async () => {
+    const cookies = parseCookies();
+    await ApiService.initHeaders(cookies.token);
+  };
+
   return (
     <StylesProvider injectFirst>
       <MaterialUIThemeProvider theme={theme}>
@@ -45,6 +54,7 @@ MyApp.getInitialProps = async ({ Component, router, ctx }) => {
   const { token } = parseCookies(ctx);
   let pageProps = {};
   let authenticated = false;
+  console.log(token);
   await ApiService.initHeaders(token);
 
   if (token) {

@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const ApiService = {
-    baseRoute: "https://5fec7402595e420017c2bdf8.mockapi.io",
+    // baseRoute: "https://5fec7402595e420017c2bdf8.mockapi.io",
+    baseRoute: "https://localhost:44390/api",
     currentlyLoggedInUserToken: null,
 
     initHeaders(userToken) {
@@ -9,7 +10,14 @@ const ApiService = {
             if (userToken) {
                 this.currentlyLoggedInUserToken = userToken;
                 axios.defaults.headers.common = {
-                    Authorization: userToken
+                    Authorization: `Bearer ${userToken}`
+                };
+                axios.defaults.headers.post["Content-Type"] = "application/json";
+                axios.defaults.headers.put["Content-Type"] = "application/json";
+            }
+            else {
+                this.currentlyLoggedInUserToken = null;
+                axios.defaults.headers.common = {
                 };
                 axios.defaults.headers.post["Content-Type"] = "application/json";
                 axios.defaults.headers.put["Content-Type"] = "application/json";
