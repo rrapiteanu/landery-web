@@ -14,42 +14,42 @@ const PropertyCard = (props) => {
   const [activeSlideNumber, setActiveSlideNumber] = useState(0);
 
   const nextSlide = () =>
-    setActiveSlideNumber((activeSlideNumber + 1) % props.imgList.length);
+    setActiveSlideNumber((activeSlideNumber + 1) % props.images.length);
 
   const prevSlide = () =>
     setActiveSlideNumber(
-      (activeSlideNumber - 1 + props.imgList.length) % props.imgList.length
+      (activeSlideNumber - 1 + props.images.length) % props.images.length
     );
 
-  const isSingleSlide = () => props.imgList.length === 1;
+  const isSingleSlide = () => props.images.length === 1;
 
   const toggleFavorites = () => {
-    if (props.favorite === false) {
+    if (!props.favorite) {
       props.addToFavorites(props.id);
     } else {
       props.removeFromFavorites(props.id);
     }
   };
 
-  const slidesStyles = props.imgList.map((src, i) =>
+  const slidesStyles = props.images.map((src, i) =>
     i === activeSlideNumber ? { opacity: 1 } : { opacity: 0 }
   );
-  const dotsStyles = props.imgList.map((src, i) =>
+  const dotsStyles = props.images.map((src, i) =>
     i === activeSlideNumber
       ? { opacity: 1, width: 10, height: 10 }
       : { opacity: 0.7 }
   );
 
-  const slides = props.imgList.map(
-    (src, i) =>
+  const slides = props.images.map(
+    (image, i) =>
       (i === activeSlideNumber ||
-        i === (activeSlideNumber + 1) % props.imgList.length ||
+        i === (activeSlideNumber + 1) % props.images.length ||
         i ===
-          (activeSlideNumber + props.imgList.length - 1) %
-            props.imgList.length) && (
+          (activeSlideNumber + props.images.length - 1) %
+            props.images.length) && (
         <img
           className="slide"
-          src={src}
+          src={image.url}
           key={"slide_" + i}
           onError={(e: any) => {
             e.target.src = "/placeholder.png";
@@ -61,7 +61,7 @@ const PropertyCard = (props) => {
 
   const isAuth = useIsAuthenticated();
 
-  const dots = props.imgList.map((src, i) => (
+  const dots = props.images.map((src, i) => (
     <div className="dot" key={"dot_" + i} style={dotsStyles[i]} />
   ));
 
@@ -107,7 +107,7 @@ const PropertyCard = (props) => {
         {/* fields */}
         {!props.noContent && (
           <div className="fields">
-            <div className="no-bedroom">{props.noBedroom} BEDROOM</div>
+            <div className="no-bedroom">{props.bedrooms} BEDROOM</div>
             <div className="name">{props.name}</div>
             <div className="price">{props.price}€ per day</div>
           </div>

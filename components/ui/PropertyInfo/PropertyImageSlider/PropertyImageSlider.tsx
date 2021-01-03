@@ -18,7 +18,7 @@ function Item({ item }) {
 
 class PropertyImageSlider extends React.Component<any, any> {
   toggleFavorites = () => {
-    if (this.props.favorite === false) {
+    if (!this.props.favorite) {
       this.props.addToFavorites();
     } else {
       this.props.removeFromFavorites();
@@ -26,6 +26,8 @@ class PropertyImageSlider extends React.Component<any, any> {
   };
 
   render() {
+    console.log(this.props.favorite);
+
     return (
       <div style={{ color: "black", position: "relative", width: "100%" }}>
         <div style={{ position: "relative" }}>
@@ -43,18 +45,18 @@ class PropertyImageSlider extends React.Component<any, any> {
               onClick={this.toggleFavorites}
             >
               <FavoriteIcon
-                style={{ display: this.props.favorite ? "none" : "block" }}
+                style={{ display: this.props.favorite ? "block" : "none" }}
               />
               <FavoriteBorderIcon
-                style={{ display: this.props.favorite ? "block" : "none" }}
+                style={{ display: this.props.favorite ? "none" : "block" }}
               />
               <span style={{ marginLeft: 3 }}>Favorite</span>
             </Button>
           )}
         </div>
         <Carousel indicators navButtonsAlwaysVisible timeout={100}>
-          {this.props.imgList.map((src, i) => (
-            <Item key={i} item={{ src }} />
+          {this.props.images.map((image, i) => (
+            <Item key={i} item={{ src: image.url }} />
           ))}
         </Carousel>
       </div>
