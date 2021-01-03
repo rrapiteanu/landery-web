@@ -1,11 +1,19 @@
 import BathtubIcon from "@material-ui/icons/Bathtub";
 import HotelIcon from "@material-ui/icons/Hotel";
 import PetsIcon from "@material-ui/icons/Pets";
+import BookPropertyDialog from "components/modals/BookPropertyDialog";
+import BOOKING_API from "lib/api/booking";
 import PROPERTIES_API from "lib/api/properties";
+import * as Moment from "moment";
+import { extendMoment } from "moment-range";
+import Router from "next/router";
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import LanderyButton from "../LanderyButton/LanderyButton";
 import ImageListItem from "./ImageListItem/ImageListItem";
 import PropertyImageSlider from "./PropertyImageSlider/PropertyImageSlider";
+
+const moment = extendMoment(Moment);
 
 const ItemsList = styled.div`
   display: flex;
@@ -67,6 +75,7 @@ const ServicesContainer = styled.div`
 class PropertyInfo extends React.Component<any, any> {
   state = {
     info: this.props.property,
+    loadingBooking: false,
   };
 
   addToFavorites = async () => {
@@ -83,35 +92,36 @@ class PropertyInfo extends React.Component<any, any> {
     } catch (error) {}
   };
 
+  bookProperty = async (startDate, endDate) => {
+    this.setState({ ...this.state, loadingBooking: true });
+
+    try {
+      await BOOKING_API.bookProperty(this.state.info.id, startDate, endDate);
+      this.setState({ ...this.state, loadingBooking: false });
+    } catch (error) {
+      this.setState({ ...this.state, loadingBooking: false });
+      throw Error("Failed to book");
+    }
+  };
+
+  goToLogin = () => {
+    Router.push("/login");
+  };
+
   render() {
-    const prop = {
-      imgList: this.state.info.images ? this.state.info.images : [],
-      name: this.state.info.display,
-      noBedroom: this.state.info.size,
-      price: this.state.info.rent,
-    };
-
-    const amenities = this.state.info.amenitiespairs
-      ? this.state.info.amenitiespairs.map((x, i) => (
-          <div key={i} style={{ margin: "10px 0px", width: "50%" }}>
-            <ImageListItem text={x.name} />
-          </div>
-        ))
-      : "";
-
     return (
       <div>
         <PageContainer>
           <LeftContainer>
             <PropertyImageSlider
-              {...prop}
+              images={this.state.info.images}
               isAuth={this.props.isAuth}
               favorite={this.state.info.favorite}
               addToFavorites={this.addToFavorites}
               removeFromFavorites={this.removeFromFavorites}
             />
 
-            <h1>{prop.name}</h1>
+            <h1>{this.state.info.name}</h1>
 
             <ServicesContainer>
               <div>
@@ -126,8 +136,8 @@ class PropertyInfo extends React.Component<any, any> {
                   }}
                 />
                 <span>
-                  {this.state.info.size}{" "}
-                  {this.state.info.size > 1 ? "bedrooms" : "bedroom"}
+                  {this.state.info.bedrooms}{" "}
+                  {this.state.info.bedrooms > 1 ? "bedrooms" : "bedroom"}
                 </span>
               </div>
               <div>
@@ -183,18 +193,42 @@ class PropertyInfo extends React.Component<any, any> {
             <h2>About</h2>
             <About>{this.state.info.description}</About>
 
-            {this.state.info.amenitiespairs &&
-              this.state.info.amenitiespairs.length !== 0 && (
+            {this.state.info.amenities &&
+              this.state.info.amenities.length !== 0 && (
                 <div>
                   <h2>Amenities</h2>
-                  <ItemsList>{amenities}</ItemsList>
+                  <ItemsList>
+                    {this.state.info.amenities.map((x, i) => (
+                      <div key={i} style={{ margin: "10px 0px", width: "50%" }}>
+                        <ImageListItem text={x.name} />
+                      </div>
+                    ))}
+                  </ItemsList>
                 </div>
               )}
           </LeftContainer>
         </PageContainer>
 
         <PropertyForm>
-          <h1>{prop.price}€</h1>
+          <h1>{this.state.info.price}€</h1>
+
+          {this.props.isAuth && (
+            <BookPropertyDialog
+              id={this.state.info.id}
+              bookProperty={this.bookProperty}
+              loadingBooking={this.state.loadingBooking}
+            />
+          )}
+          {!this.props.isAuth && (
+            <LanderyButton
+              type="submit"
+              fullWidth
+              color="primary"
+              onClick={this.goToLogin}
+            >
+              Login to book it
+            </LanderyButton>
+          )}
         </PropertyForm>
       </div>
     );
