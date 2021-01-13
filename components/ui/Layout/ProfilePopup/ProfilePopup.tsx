@@ -62,7 +62,7 @@ const LightTooltip = withStyles((theme) => ({
   },
 }))(Tooltip);
 
-export default function ProfilePopup({ name = "User User" }) {
+export default function ProfilePopup({}) {
   const classes = useStyles({});
 
   const handleSignOut = () => {
@@ -73,12 +73,10 @@ export default function ProfilePopup({ name = "User User" }) {
     <PopupMenu
       menuButton={
         <div className={classes.popupContainer}>
-          <LightTooltip title={name} placement="bottom-start">
-            <Avatar
-              className={classes.avatar}
-              src={"https://www.w3schools.com/w3css/img_avatar3.png"}
-            />
-          </LightTooltip>
+          <Avatar
+            className={classes.avatar}
+            src={"https://www.w3schools.com/w3css/img_avatar3.png"}
+          />
         </div>
       }
     >
