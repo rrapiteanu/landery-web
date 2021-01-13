@@ -54,11 +54,10 @@ const HomepageContent = () => {
 
           <Grid item lg={8} md={8} sm={12} xs={12}>
             <div className="section">
-              <h2>Where does it come from?</h2>
+              <h2>How it Works?</h2>
               <h4>
-                Contrary to popular belief, Lorem Ipsum is not simply random
-                text. It has roots in a piece of classical Latin literature from
-                45 BC, making it over 2000 years old. Richard McClintock
+                Browse awesome apartments all over the city. Fill out your
+                profile and we'll find you the best options.
               </h4>
             </div>
           </Grid>
@@ -69,12 +68,12 @@ const HomepageContent = () => {
         <Grid container direction="row" className="middle-lg middle-md">
           <Grid item lg={8} md={8} sm={12} xs={12}>
             <div className="section">
-              <h2>Why do we use it?</h2>
+              <h2>Why host on Landery?</h2>
               <h4>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum is that it has a more-or-less
-                normal distribution of letters
+                No matter what kind of home or room you have to share, Landery
+                makes it simple and secure to host travelers. You’re in full
+                control of your availability, prices, house rules, and how you
+                interact with guests.
               </h4>
             </div>
           </Grid>

@@ -38,13 +38,11 @@ PropertyPage.getInitialProps = async (ctx) => {
     return {
       property: {
         ...resp.data,
-        amenities: [
-          { name: "Kitchen" },
-          { name: "Gym" },
-          { name: "Wifi" },
-          { name: "Pool" },
-          { name: "Washer" },
-        ],
+        amenities: resp.data.amenities.map((amenity) => {
+          return {
+            name: amenity,
+          };
+        }),
       },
     };
   } catch (error) {

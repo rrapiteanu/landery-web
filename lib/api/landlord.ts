@@ -9,9 +9,8 @@ const getListing = async (property_id) => {
     return ApiService.get(API_ROUTES.LANLORD.listing(property_id));
 };
 
-const uploadProperty = async (name, address, ameninties) => {
-    // return ApiService.get(API_ROUTES.LANLORD.listing(property_id));
-    return true
+const uploadProperty = async (data) => {
+    return ApiService.post(API_ROUTES.LANLORD.uploadProperty, data);
 };
 
 

@@ -88,10 +88,7 @@ const HomepageHeader = () => {
         <Grid item lg={5} md={6} sm={11} xs={12}>
           <HeaderContent>
             <h1>Landery</h1>
-            <h4>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </h4>
+            <h4>Find deals on hotels, homes, and much more...</h4>
 
             <div style={{ marginTop: "30px" }}>
               {!isAuth && (
