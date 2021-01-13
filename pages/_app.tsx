@@ -54,7 +54,6 @@ MyApp.getInitialProps = async ({ Component, router, ctx }) => {
   const { token } = parseCookies(ctx);
   let pageProps = {};
   let authenticated = false;
-  console.log(token);
   await ApiService.initHeaders(token);
 
   if (token) {

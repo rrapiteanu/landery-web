@@ -30,7 +30,6 @@ export default function BookingList({ bookings = [] }) {
   );
 
   const goToProperty = (id) => {
-    console.log(id);
     Router.push(`/property/${id}`);
   };
 

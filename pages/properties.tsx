@@ -124,8 +124,6 @@ PropertiesPage.getInitialProps = async (ctx) => {
   try {
     const resp = await PROPERTIES_API.getProperties();
 
-    console.log(resp);
-
     return {
       data: resp.data.map((property) => {
         return {

@@ -26,8 +26,6 @@ class PropertyImageSlider extends React.Component<any, any> {
   };
 
   render() {
-    console.log(this.props.favorite);
-
     return (
       <div style={{ color: "black", position: "relative", width: "100%" }}>
         <div style={{ position: "relative" }}>
